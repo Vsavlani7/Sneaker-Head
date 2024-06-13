@@ -1,0 +1,52 @@
+<header style="background-color:white; ">
+        <hr style="width: 100%; border-top: 0.125rem solid rgb(0, 0, 0); margin: 0%; ">
+        <div class="container" >
+            <div class="row">
+                <div>
+                    
+                    <div class="header__logo" style="padding: 0.313rem; padding-top: 0.75rem; padding-right: 3.125rem; padding-bottom: 0.625rem;">
+                        <a href="./index.php"><img src="images/vtn2.png" width="220px"></a>
+                    </div>
+                </div>
+                <div >
+                    <nav class="header__menu mobile-menu" style="padding:0.313rem; padding-top:0.75rem; ">
+                        <ul>
+                        <li><a href="./sneaker.php" >Sneaker</a></li>
+                            <li><a href="./collab.php" >Collaboration</a></li>
+                            <li><a href="./blog.php">Blog</a></li>
+                            <li><a href="./about.php" >About</a></li>
+                            
+                           <li style=" margin-left: 12.5rem; margin-right: 1.875rem;"> <a href="wishlist.php"><img src="img/icon/heart.png" alt=""></a></li>
+                           <li style=" margin-right: 1.875rem;"> <a href="cart.php"><img src="img/icon/cart.png" alt=""></a></li>
+                            <li style=" margin-right: 1.875rem;"><a href="#"><img src="img/icon/person.jpeg" alt="" style="width:20px;"></a>
+                                <ul class="dropdown" style="width: 18.75rem; height: 17.5rem; border-radius: 0.938rem; left: -4.375rem; top: 3.75rem; background-color: #161919bd;">
+                                    <li style="margin-right: 3.125rem; padding: 0.313rem; padding-top: 0.938rem;"><a href="profile.php" style="
+                                        font-size: 1rem;">My Profile</a></li>
+                                    <li style="padding:  0.313rem;"><a href="wishlist.php" style="
+                                        font-size: 1rem;">Wishlist</a></li>
+                                   <li style="padding:  0.313rem;"><a href="myorder.php" style="
+                                        font-size: 1rem;">My order</a></li>
+                                    <li style="padding:  0.313rem;"><a href="contact.php" style="
+                                        font-size: 1rem;">Contact Us</a></li>
+                                    
+									<?php
+									if(isset($_SESSION["loggedin"])){
+										echo "<li style='padding: 0.313rem; padding-left: 0.625rem; '><a href='logout.php' class='primary-btn' style='background-color:rgb(255, 255, 255); color: black;width: 200px; font-family: inherit; letter-spacing: 0px; margin-left: 35px; border-radius: 5px; text-align: center; '>Log Out</a></li>";
+									}else{
+										echo "<li style='padding: 0.313rem; padding-left: 0.625rem; '><a href='login.php' class='primary-btn' style='background-color:rgb(255, 255, 255); color: black;width: 200px; font-family: inherit; letter-spacing: 0px; margin-left: 35px; border-radius: 5px; text-align: center; '>Log In</a></li>
+										
+										<li style='padding:  0.313rem; padding-left: 0.625rem; '> <a href='register.php' class='primary-btn' style='background-color:rgb(255, 255, 255); color: black;width: 200px; font-family: inherit; letter-spacing: 0px; margin-left: 35px; border-radius: 5px; text-align: center; '>Register</a></li>";
+									}
+									?>
+									
+                                    
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="canvas__open"><i class="fa fa-bars"></i></div>
+        </div>
+        <hr style="width: 100%; border-bottom: 0.125rem solid rgb(0, 0, 0); margin: 0px; ">
+    </header>

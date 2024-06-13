@@ -1,0 +1,233 @@
+<?php
+
+include 'config.php';
+session_start();
+
+
+
+$get_product_id=$_GET['add_to_cart'];
+$sql="select * from shoe where id=$get_product_id";
+$query=mysqli_query($con,$sql);
+while($rows=mysqli_fetch_assoc($query)){
+    $image = $rows['cartimg'];
+    $image1 = $rows['img1'];
+    $image2 = $rows['img2'];
+    $image3 = $rows['img3'];
+    $image4 = $rows['img4'];
+    $image5 = $rows['img5'];
+	$brand = $rows['brand'];
+	$name = $rows['name'];
+	$price= $rows['price'];
+	$desc= $rows['description'];
+	$code = $rows['code'];
+	$color = $rows['color'];
+	$size6 = $rows['size6'];
+	$size7 = $rows['size7'];
+	$size8 = $rows['size8'];
+	$size9 = $rows['size9'];
+	
+};
+
+
+if(isset($_POST['addcart'])){
+	if(isset($_SESSION['loggedin'])){
+		$shoe_image = $_POST['shoe_image'];
+		$shoe_brand = $_POST['shoe_brand'];
+		$shoe_name = $_POST['shoe_name'];
+		$shoe_price = $_POST['shoe_price'];
+		$shoe_size = $_POST['size'];
+		$shoe_quantity = $_POST['shoe_quantity'];
+		$shoe_color = $_POST['shoe_color'];
+		$shoe_code = $_POST['shoe_code'];
+	
+		$user_id = $_SESSION['user_id'];
+		$get_product_id=$_GET['add_to_cart'];
+		$sql_query= "select * from cart where prod_id='$get_product_id' and user_id='$user_id' and size='$shoe_size'";
+		$select_cart = mysqli_query($con,$sql_query);
+		if(mysqli_num_rows($select_cart) > 0){
+			echo "Product already exist";
+		}elseif($shoe_size == '6' and $shoe_quantity > $size6){
+			echo "Product is not available in size6";	
+		}elseif($shoe_size == '7' and $shoe_quantity > $size7){
+			echo "Product is not available in size7";
+		}elseif($shoe_size == '8' and $shoe_quantity > $size8){
+			echo "Product is not available in size8";
+		}elseif($shoe_size == '9' and $shoe_quantity > $size9){
+			echo "Product is not available in size9";
+		}else{
+			$new_query = "insert into cart(user_id,prod_id,brand,name,image,price,quantity,size,color,code) values ('$user_id','$get_product_id','$shoe_brand','$shoe_name','$shoe_image','$shoe_price','$shoe_quantity','$shoe_size','$shoe_color','$shoe_code')" ;
+			$new_cart = mysqli_query($con, $new_query);
+			if($new_query){
+				header('location:cart.php');
+			}else{
+				echo "<script> alert('Something Wrong')</script>";
+			}
+		
+		}
+	}else{
+	
+	echo "<script type = \"text/javascript\">
+			alert(\"Login Yourself First\");
+			window.location = (\"login.php\")
+			</script>";
+	exit;
+}
+}
+
+
+
+
+
+?>
+
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Sneaker Head">
+    <meta name="keywords" content="Sneaker Head, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sneaker Head</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <style>
+       input[type="radio"]{
+        display: none;
+        padding-right: 5px;
+       }
+       label{
+        position: relative;
+        font-size: 25px;
+        border: 2px solid #6e6666;
+        padding-right: 14px;
+        padding-left: 14px;
+        padding-top: 3px;
+        padding-bottom: 3px;
+       }
+       input[type="radio"]:checked + label{
+        background-color: red;
+        color: white;
+       }
+        </style>
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- About Section End -->
+<br><br><br>
+    <!-- Testimonial Section Begin -->
+    <section class="testimonial" style="background-color: white;">
+            <div class="row" style="margin: 0px;">
+			
+                <div class="col-lg-5 p-0">
+				<form method="POST" action="" >
+                    <div class="testimonial__text">
+                        <div class="testimonial__author">
+                            <!-- <div class="testimonial__author__pic">
+                                <img src="img/about/testimonial-author.jpg" alt="">
+                            </div> -->
+                            <div class="testimonial__author__text" style="text-align: left;">
+                                <h3><?php echo $brand.$name ?></h3><br><br>
+								<input type="hidden" name="shoe_brand" value="<?php echo $brand;?>" >
+								<input type="hidden" name="shoe_name" value="<?php echo $name;?>" >
+                                <p style="font-style:normal; color: black;">COLOR</p><p><?php echo $color ?></p><br>
+                                <p style="color:red; font-weight: 700; font-style:normal; font-size: x-large;"><?php echo $price ?></p>
+								<input type="hidden" name="shoe_price" value="<?php echo $price;?>"><br>
+                                <h5>Description</h5>
+                                <p style="font-size:15px;"><?php echo $desc ?></p>
+                                    <p style="font-size:15px;">Style : <?php echo $code; ?></p>
+									<input type="hidden" name="shoe_code" value="<?php echo $code; ?>">
+                                    <p style="font-size:15px;">Color : <?php echo $color; ?></p>
+									<input type="hidden" name="shoe_color" value="<?php echo $color;?>"><br>
+                                    <p style="font-style:normal; color: black;">SIZE</p><br>
+                                   <p>
+                                    <input type="radio" name="size" id= "shoe_size6" value="6" />
+									<label for="shoe_size6">6</label>
+                                    <input type="radio" name="size" id= "shoe_size7" value="7" />
+									<label for="shoe_size7">7</label>
+                                    <input type="radio" name="size" id= "shoe_size8" value="8" />
+									<label for="shoe_size8">8</label>
+                                    <input type="radio" name="size" id= "shoe_size9" value="9" />
+									<label for="shoe_size9">9</label>
+                                   </p>
+                            </div>
+                            
+                           
+                                
+                        </div>
+                    </div>
+                    <h5 style="margin-left: 50px;">QTY</h5><br>
+                        
+                            <input type="number" min="1" name="shoe_quantity" value="1" >
+                        <br><br><br>
+                        <input type="submit" value="ADD TO CART" name= "addcart" class="primary-btn" style="margin-left: 50px;"><button style="background-color: #f46363; margin-left: 10px;"><img src="img/icon/heart2.png" alt="" style="width: 45px; "></button><br><br><br>
+                        <h5 style="margin-left: 50px; padding-bottom: 4px;" >Shipping & Return</h5>
+                        <p style="margin-left: 50px; font-size:medium;">Free standard delivery on all orders and free return within 14 days of your order delivery date. Visit our Return Policy for more information.</p><br>
+                        <p style="margin-left: 50px; font-size:medium;">For any queries, please contact Customer Service at 9586666118 or via customercareindia@sneakerhead.com.</p>
+                </div>
+                
+                <div class="col-lg-7 p-0" style="background-color: white;">
+                    <!-- <div class="testimonial__pic set-bg" data-setbg="images/j1.jpg"></div> -->
+                    <img src="images/Sneakers/<?php echo $image; ?>" style="padding:20px; width:95%;">
+					<input type="hidden" name="shoe_image" value="<?php echo $image ; ?>" >
+                    <div class="row">
+                    <div class="col-lg-6 col-md-5 col-sm-5" style="padding: 20px;"><div class="product__item__pic set-bg" data-setbg="images/Sneakers/<?php echo $image1; ?>" style="height: 500px;"></div></div>
+                    <div class="col-lg-6 col-md-5 col-sm-5" style="padding: 20px;"><div class="product__item__pic set-bg" data-setbg="images/Sneakers/<?php echo $image2; ?>" style="height: 500px;"></div></div>
+                    
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-5 col-sm-5" style="padding: 20px;"><div class="product__item__pic set-bg" data-setbg="images/Sneakers/<?php echo $image3; ?>" ></div></div>
+                <div class="col-lg-4 col-md-5 col-sm-5" style="padding: 20px; "><div class="product__item__pic set-bg" data-setbg="images/Sneakers/<?php echo $image4; ?>"></div></div>
+                <div class="col-lg-4 col-md-5 col-sm-5" style="padding: 20px;"><div class="product__item__pic set-bg" data-setbg="images/Sneakers/<?php echo $image5; ?>"></div></div>
+				</form>
+        </div>
+        </div>
+        </div>
+    </section>
+    <!-- Testimonial Section End -->
+
+   
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.countdown.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

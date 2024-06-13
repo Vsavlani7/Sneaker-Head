@@ -1,0 +1,37 @@
+<header style="background-color:white; ">
+        <hr style="width: 100%; border-top: 0.125rem solid rgb(0, 0, 0); margin: 0%; ">
+        <div class="container" >
+            <div class="row">
+                <div>
+                    
+                    <div class="header__logo" style="padding: 0.313rem; padding-top: 0.75rem; padding-right: 3.125rem; padding-bottom: 0.625rem;">
+                        <a href="./adminindex.php"><img src="images/vtn2.png" width="220px"></a>
+                    </div>
+                </div>
+                <div >
+                    <nav class="header__menu mobile-menu" style="padding:0.313rem; padding-top:0.75rem; ">
+                        <ul>
+                        <li><a href="./addsneaker.php" >Add Sneaker</a></li>
+                            <li><a href="./viewuser.php" >View User</a></li>
+                            <li><a href="./vieworder.php">Orders</a></li>
+                            <li><a href="./viewcomment.php" >Comments</a></li>                           
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="canvas__open"><i class="fa fa-bars"></i></div>
+        </div>
+        <hr style="width: 100%; border-bottom: 0.125rem solid rgb(0, 0, 0); margin: 0px; ">
+    </header>
+     <section class="breadcrumb-option" style="padding:6px; background:white;">
+            <div class="row" style="padding-left:15px;">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <div class="breadcrumb__links">
+                            <a href="./adminindex.php">Home</a>
+                            <span>Add Sneaker</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>

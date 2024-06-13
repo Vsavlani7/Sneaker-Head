@@ -1,0 +1,227 @@
+<?php
+$server = 'localhost';
+$username= 'root';
+$password= '';
+$database = 'shoes';
+
+$con=mysqli_connect($server,$username,$password,$database);
+
+if($con){
+}else{
+    echo "Something Wrong";
+}
+?>
+
+<?php
+
+$sql="select * from collab where id=2";
+$query=mysqli_query($con,$sql);
+
+while($rows=mysqli_fetch_assoc($query)){
+    $image = $rows['cartimg'];
+    $image1 = $rows['img1'];
+    $image2 = $rows['img2'];
+    $image3 = $rows['img3'];
+    $image4 = $rows['img4'];
+    $image5 = $rows['img5'];
+    $image6 = $rows['img6'];
+	$brand = $rows['brand'];
+	$name = $rows['name'];
+	$price= $rows['price'];
+	$desc= $rows['description'];
+	$code = $rows['code'];
+	$color = $rows['color'];
+    ?>
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Sneaker Head">
+    <meta name="keywords" content="Sneaker Head, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sneaker Head</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <style>
+       input[type="radio"]{
+        display: none;
+        padding-right: 5px;
+       }
+       label{
+        position: relative;
+        font-size: 25px;
+        border: 2px solid #6e6666;
+        padding-right: 14px;
+        padding-left: 14px;
+        padding-top: 3px;
+        padding-bottom: 3px;
+       }
+       input[type="radio"]:checked + label{
+        background-color: red;
+        color: white;
+       }
+        </style>
+</head>
+
+<body style="overflow-x:hidden;">
+   
+<header style="background-color:white; ">
+        <hr style="width: 100%; border-top: 0.125rem solid rgb(0, 0, 0); margin: 0%; ">
+        <div class="container" >
+            <div class="row">
+                <div>
+                    
+                    <div class="header__logo" style="padding: 0.313rem; padding-top: 0.75rem; padding-right: 3.125rem; padding-bottom: 0.625rem;">
+                        <a href="./index.php"><img src="images/vtn2.png" width="220px"></a>
+                    </div>
+                </div>
+                <div >
+                    <nav class="header__menu mobile-menu" style="padding:0.313rem; padding-top:0.75rem; ">
+                        <ul>
+                        <li><a href="./sneaker.php" >Sneaker</a></li>
+                            <li><a href="./collab.php" >Collaboration</a></li>
+                            <li><a href="./blog.php">Blog</a></li>
+                            <li><a href="./about.php" >About</a></li>
+                            <li style="margin-left: 12.5rem;  margin-right: 1.875rem ;"><a href="" class="search-switch"><img src="img/icon/search.png" alt=""></a></li>
+                           <li style=" margin-left: 12.5rem; margin-right: 1.875rem;"> <a href="wishlist.php"><img src="img/icon/heart.png" alt=""></a></li>
+                           <li style=" margin-right: 1.875rem;"> <a href="cart.php"><img src="img/icon/cart.png" alt=""></a></li>
+                            <li style=" margin-right: 1.875rem;"><a href="#"><img src="img/icon/person.jpeg" alt="" style="width:20px;"></a>
+                                <ul class="dropdown" style="width: 18.75rem; height: 17.5rem; border-radius: 0.938rem; left: -4.375rem; top: 3.75rem; background-color: #161919bd;">
+                                    <li style="margin-right: 3.125rem; padding: 0.313rem; padding-top: 0.938rem;"><a href="./about.html" style="
+                                        font-size: 1rem;">My Profile</a></li>
+                                    <li style="padding:  0.313rem;"><a href="./shop-details.html" style="
+                                        font-size: 1rem;">Wishlist</a></li>
+                                    <li style="padding:  0.313rem;"><a href="./shopping-cart.html" style="
+                                        font-size: 1rem;">My order</a></li>
+                                    <li style="padding:  0.313rem;"><a href="./checkout.html" style="
+                                        font-size: 1rem;">Contact Us</a></li>
+                                    <li style="padding: 0.313rem; padding-left: 0.625rem; "> <a href="login.php" class="primary-btn" style="background-color:rgb(255, 255, 255); color: black;width: 200px; font-family: inherit; letter-spacing: 0px; margin-left: 35px; border-radius: 5px; text-align: center; ">Log In</a></li>
+                                    <li style="padding:  0.313rem; padding-left: 0.625rem; "> <a href="register.php" class="primary-btn" style="background-color:rgb(255, 255, 255); color: black;width: 200px; font-family: inherit; letter-spacing: 0px; margin-left: 35px; border-radius: 5px; text-align: center; ">Register</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="canvas__open"><i class="fa fa-bars"></i></div>
+        </div>
+        <hr style="width: 100%; border-bottom: 0.125rem solid rgb(0, 0, 0); margin: 0px; ">
+    </header>
+    <section class="breadcrumb-option" style="padding:6px; background:white;">
+            <div class="row" style="padding-left:15px;">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <div class="breadcrumb__links">
+                            <a href="./index.php">Home</a>
+                            <a href="./collab.php">Collaboration</a>
+                            <span>Billie Eilish</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Testimonial Section Begin -->
+    <section class="testimonial" style="background-color: white;">
+            <div class="row" style="margin: 0px;">
+                <div class="col-lg-5 p-0">
+                    <div class="testimonial__text">
+                        <div class="testimonial__author">
+                            <div class="testimonial__author__text" style="text-align: left;">
+                                <h3><?php echo $brand; $name; ?> </h3><br><br>
+                                <p style="font-style:normal; color: black;">Edition</p><p>TRAVIS SCOTT</p><br>
+                                <p style="color:red; font-weight: 700; font-style:normal; font-size: x-large;"><?php echo $price; ?></p><br>
+                                <h5>Description</h5>
+                                <p style="font-size:15px;"><?php echo $des; ?></p>
+                                    <p style="font-size:15px;">Style : <?php echo $code; ?></p>
+                                    <p style="font-size:15px;">Color : <?php echo $color; ?></p><br>
+                                    <p style="font-style:normal; color: black;">SIZE</p><br>
+                                   <div class="container-radio">
+                                    <input type="radio" name="size" id="6">
+                                    <label for="6">6</label>
+                                    <input type="radio" name="size" id="7">
+                                    <label for="7">7</label>
+                                    <input type="radio" name="size" id="8">
+                                    <label for="8">8</label>
+                                    <input type="radio" name="size" id="9">
+                                    <label for="9">9</label>
+                                   
+                                   </div>
+                            </div>
+                            
+                           
+                                
+                        </div>
+                    </div>
+                    <h5 style="margin-left: 50px;">QTY</h5><br>
+                        <div class="nice-select" tabindex="0" style="margin-left: 50px; background-color: black; color: white;">
+                            <span class="current">1</span>
+                            <ul class="list" style="color: black;">
+                                <li data-value="1" class="option selected focus">1</li>
+                                <li data-value="2" class="option">2</li>
+                                <li data-value="3" class="option">3</li>
+                            </ul>
+                        </div><br><br><br>
+                        <input type="submit" value="ADD TO CART" class="primary-btn" style="margin-left: 50px;"><button style="background-color: #f46363; margin-left: 10px;"><img src="img/icon/heart2.png" alt="" style="width: 45px; "></button><br><br><br>
+                        <h5 style="margin-left: 50px; padding-bottom: 4px;" >Shipping & Return</h5>
+                        <p style="margin-left: 50px; font-size:medium;">Free standard delivery on all orders and free return within 14 days of your order delivery date. Visit our Return Policy for more information.</p><br>
+                        <p style="margin-left: 50px; font-size:medium;">For any queries, please contact Customer Service at 9586666118 or via customercareindia@sneakerhead.com.</p>
+                </div>
+                
+                <div class="col-lg-7 p-0" style="background-color: white;">
+                    <!-- <div class="testimonial__pic set-bg" data-setbg="images/j1.jpg"></div> -->
+                    <img src="images/collabs/<?php echo $image; ?>" style="padding:20px; width:95%;">
+                    <div class="row">
+                    <div class="col-lg-6 col-md-5 col-sm-5" style="padding: 20px;"><div class="product__item__pic set-bg" data-setbg="images/collabs/<?php echo $image1; ?>" style="height: 500px;"></div></div>
+                    <div class="col-lg-6 col-md-5 col-sm-5" style="padding: 20px;"><div class="product__item__pic set-bg" data-setbg="images/collabs/<?php echo $image2; ?>" style="height: 500px;"></div></div>
+                    
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-5 col-sm-5" style="padding: 20px;"><div class="product__item__pic set-bg" data-setbg="images/collabs/<?php echo $image3; ?>" ></div></div>
+                <div class="col-lg-4 col-md-5 col-sm-5" style="padding: 20px; "><div class="product__item__pic set-bg" data-setbg="images/collabs/<?php echo $image4; ?>"></div></div>
+                <div class="col-lg-4 col-md-5 col-sm-5" style="padding: 20px;"><div class="product__item__pic set-bg" data-setbg="images/collabs/<?php echo $image5; ?>"></div></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-5 col-sm-5" style="padding: 20px; padding-left: 20px;"><div class="product__item__pic set-bg" data-setbg="images/collabs/<?php echo $image6; ?>" style="width: 100%;"></div></div>
+        </div>
+        
+        </div>
+        </div>
+    </section>
+    <!-- Testimonial Section End -->
+
+   
+    
+    <?php
+}
+?>
+    <!-- Search End -->
+
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.countdown.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
